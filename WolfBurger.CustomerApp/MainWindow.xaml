@@ -8,10 +8,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Add Customer"
+                x:Name="btnAddCustomer"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Margin="10"
                 Click="ButtonAddCustomer_click"/>
-
     </Grid>
 </Window>

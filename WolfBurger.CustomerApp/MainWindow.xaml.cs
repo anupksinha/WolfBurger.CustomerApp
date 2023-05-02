@@ -27,7 +27,7 @@ namespace WolfBurger.CustomerApp
 
         private void ButtonAddCustomer_click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("New Customer Added!!");
+            btnAddCustomer.Content = "Customer Added!!";
         }
     }
 }
