@@ -7,6 +7,79 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" FontSize="20" >
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!-- Manu Items -->
+        <Menu FontSize="20">
+            <MenuItem Header="_Views">
+                <MenuItem Header="_Customers"/>
+                <MenuItem Header="_Products"/>
+            </MenuItem>
+        </Menu>
+        
+        <!-- Header -->
+        <StackPanel Background="Orange" Orientation="Horizontal">
+            <Image Source="\Images\wolf.png" Width="100"/>
+            <TextBlock Text="Wolf Burger Customer App" FontSize="30"
+                       Foreground="White"/>
+            <TextBlock Text="version 1.0" FontSize="15"
+                       Foreground="#333333"/>
+        </StackPanel>
+        
+        <!-- Customer List -->
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button>
+                    <StackPanel>
+                        <Image Source="\Images\add.png" Height="18" Margin="0 0 5 0"/>
+                        <TextBlock Text="Add"/>
+                    </StackPanel>
+                </Button>
+                <Button Content="Delete"/>
+                <Button>
+                    <StackPanel>
+                        <Image Source="\Images\move.png" Height="18" Margin="0 0 5 0"/>
+                        <TextBlock Text="Move"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel>
+                <ListView>
+                    <ListBoxItem>Ben</ListBoxItem>
+                    <ListBoxItem>Kenee</ListBoxItem>
+                    <ListBoxItem>Ansh</ListBoxItem>
+                    <ListBoxItem>Jerry</ListBoxItem>
+                    <ListBoxItem>Logan</ListBoxItem>
+                    <ListBoxItem>Sarthak</ListBoxItem>
+                    <ListBoxItem>Dhruv</ListBoxItem>
+                    <ListBoxItem>Sophie</ListBoxItem>
+                    <ListBoxItem>Erika</ListBoxItem>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+        
+       <!-- Customer Details -->
+        <StackPanel>
+            <Label>First Name:</Label>
+            <TextBox/>
+            <Label>Last Name:</Label>
+            <TextBox/>
+            <CheckBox>Is Developer</CheckBox>
+        </StackPanel>
+
+        <StatusBar>
+            <StatusBarItem Fontsize="20" Content=" (c) Wolf Burger Company"/>
+        </StatusBar>
+            
         <Button x:Name="btnAddCustomer"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
@@ -21,5 +94,7 @@
                 
             </Button.Content>
         </Button>
+
     </Grid>
 </Window>
+ 
