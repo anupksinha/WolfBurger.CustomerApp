@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WolfBurger.CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontSize="20" >
+        Title="MainWindow"
+        d:DesignWidth="500" d:DesignHeight="600"  Height="450" Width="800" FontSize="20" >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         <!-- Manu Items -->
-        <Menu FontSize="20">
+        <Menu Grid.ColumnSpan="2" FontSize="20">
             <MenuItem Header="_Views">
                 <MenuItem Header="_Customers"/>
                 <MenuItem Header="_Products"/>
@@ -27,32 +28,33 @@
         </Menu>
         
         <!-- Header -->
-        <StackPanel Background="Orange" Orientation="Horizontal">
-            <Image Source="\Images\wolf.png" Width="100"/>
-            <TextBlock Text="Wolf Burger Customer App" FontSize="30"
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2"
+            Background="Orange" Orientation="Horizontal">
+            <Image Source="\Images\wolf.png" Width="50" Margin="5 5 10 6"/>
+            <TextBlock Text="Wolf Burger Customer App" FontSize="30" Margin="5 5 10 5"
                        Foreground="White"/>
-            <TextBlock Text="version 1.0" FontSize="15"
+            <TextBlock Text="version 1.0" FontSize="15" Margin="5 25 5 0"
                        Foreground="#333333"/>
         </StackPanel>
         
         <!-- Customer List -->
-        <StackPanel>
+        <StackPanel Background="#777" Grid.Row="2">
             <StackPanel Orientation="Horizontal">
-                <Button>
-                    <StackPanel>
+                <Button Margin="10" Width="75">
+                    <StackPanel Orientation="Horizontal">
                         <Image Source="\Images\add.png" Height="18" Margin="0 0 5 0"/>
                         <TextBlock Text="Add"/>
                     </StackPanel>
                 </Button>
-                <Button Content="Delete"/>
-                <Button>
-                    <StackPanel>
-                        <Image Source="\Images\move.png" Height="18" Margin="0 0 5 0"/>
-                        <TextBlock Text="Move"/>
+                <Button Width="75" Content="Delete" Margin="0 10 10 10"/>
+                <Button Margin="0 10 10 10">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/move.png" Height="18" />
                     </StackPanel>
+                    
                 </Button>
             </StackPanel>
-            <StackPanel>
+            <StackPanel Background="#333333" Margin="10">
                 <ListView>
                     <ListBoxItem>Ben</ListBoxItem>
                     <ListBoxItem>Kenee</ListBoxItem>
@@ -68,33 +70,19 @@
         </StackPanel>
         
        <!-- Customer Details -->
-        <StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2">
             <Label>First Name:</Label>
-            <TextBox/>
+            <TextBox Margin="5 0 5 0"/>
             <Label>Last Name:</Label>
-            <TextBox/>
-            <CheckBox>Is Developer</CheckBox>
-        </StackPanel>
-
-        <StatusBar>
-            <StatusBarItem Fontsize="20" Content=" (c) Wolf Burger Company"/>
-        </StatusBar>
-            
-        <Button x:Name="btnAddCustomer"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Margin="10"
-                Width="75"
-                Click="ButtonAddCustomer_click">
-            <Button.Content>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="\Images\add.png" Height="18" Margin="0 0 5 0"/>
-                    <TextBlock Text="Add"/>
-                </StackPanel>
+            <TextBox Margin="5 0 5 0"/>
+            <CheckBox Content="Is Developer" Margin="5 10 0 0">
                 
-            </Button.Content>
-        </Button>
-
+        </StackPanel>
+        
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="2">
+            <StatusBarItem Content=" (c) Wolf Burger Company"/>
+        </StatusBar>
     </Grid>
 </Window>
  
