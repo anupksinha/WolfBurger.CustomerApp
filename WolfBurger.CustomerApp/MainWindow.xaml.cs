@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -28,6 +29,17 @@ namespace WolfBurger.CustomerApp
         private void ButtonAddCustomer_click(object sender, RoutedEventArgs e)
         {
             //btnAddCustomer.Content = "Customer Added!!";
+        }
+
+        private void MoveNavigateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //var column = (int)CustomerListGrid.GetValue(Grid.ColumnProperty);
+            //var newColumn = column == 0 ? 2 : 0;
+            //CustomerListGrid.SetValue(Grid.ColumnProperty, newColumn);
+
+            var column = Grid.GetColumn(CustomerListGrid);
+            var newColumn = column == 0 ? 2: 0;
+            Grid.SetColumn(CustomerListGrid, newColumn);
         }
     }
 }
