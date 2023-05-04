@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using WolfBurger.CustomerApp.Data;
@@ -10,6 +11,7 @@ namespace WolfBurger.CustomerApp.ViewModel
     {
         private ICustomerDataProvider _customerDataProvider;
         private CustomerItemViewModel? selectedCustomer;
+        private NavigationSide _navigationSide;
 
         public CustomerViewModel(ICustomerDataProvider customerDataProvider)
         {
@@ -18,15 +20,25 @@ namespace WolfBurger.CustomerApp.ViewModel
 
         public ObservableCollection<CustomerItemViewModel> Customers { get; set; } = new();
 
-        public CustomerItemViewModel? SelectedCustomer 
-        { 
+        public CustomerItemViewModel? SelectedCustomer
+        {
             get => selectedCustomer;
-            set 
+            set
             {
                 selectedCustomer = value;
                 RaisePropertyChanged(nameof(SelectedCustomer));
-            }   
+            }
         }
+
+        public NavigationSide NavigationColumnSide 
+        { 
+            get => _navigationSide;
+            set
+            {
+                _navigationSide = value;
+                RaisePropertyChanged();
+            }
+         }
         public async Task LoadAsync()
         {
             if (Customers.Any())
@@ -49,6 +61,16 @@ namespace WolfBurger.CustomerApp.ViewModel
             SelectedCustomer = viewModel;
         }
 
-       
+        internal void MoveNavigation()
+        {
+            NavigationColumnSide = NavigationColumnSide == NavigationSide.Left ? NavigationSide.Right : NavigationSide.Left;
+        }
+
+        public enum NavigationSide
+        {
+            Left,
+            Right
+
+        }
     }
 }

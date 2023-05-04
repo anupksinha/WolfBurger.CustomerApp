@@ -24,9 +24,10 @@ namespace WolfBurger.CustomerApp.View
 
         private void MoveNavigateBtn_Click(object sender, RoutedEventArgs e)
         {
-            var column = Grid.GetColumn(CustomerListGrid);
-            var newColumn = column == 0 ? 2 : 0;
-            Grid.SetColumn(CustomerListGrid, newColumn);
+            _customerViewModel.MoveNavigation();
+            //var column = Grid.GetColumn(CustomerListGrid);
+            //var newColumn = column == 0 ? 2 : 0;
+            //Grid.SetColumn(CustomerListGrid, newColumn);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
