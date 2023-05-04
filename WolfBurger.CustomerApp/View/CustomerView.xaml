@@ -30,7 +30,7 @@
                     <Image Source="/move.png" Height="18" />
                 </Button>
             </StackPanel>
-            <ListView Grid.Row="1" Margin="10">
+            <ListView x:Name="ListViewData" Grid.Row="1" Margin="10">
                 <ListBoxItem>Ben</ListBoxItem>
                 <ListBoxItem>Kenee</ListBoxItem>
                 <ListBoxItem>Ansh</ListBoxItem>
@@ -47,7 +47,7 @@
         <!-- Customer Details -->
         <StackPanel Grid.Column="1">
             <Label>First Name:</Label>
-            <TextBox Margin="5 0 5 0"/>
+            <TextBox Text="{Binding ElementName=ListViewData, Path=SelectedItem.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5 0 5 0"/>
             <Label>Last Name:</Label>
             <TextBox Margin="5 0 5 0"/>
             <CheckBox Content="Is Developer" Margin="5 10 0 0"/>
