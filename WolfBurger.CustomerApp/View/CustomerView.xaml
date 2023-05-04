@@ -30,16 +30,11 @@
                     <Image Source="/move.png" Height="18" />
                 </Button>
             </StackPanel>
-            <ListView x:Name="ListViewData" Grid.Row="1" Margin="10">
-                <ListBoxItem>Ben</ListBoxItem>
-                <ListBoxItem>Kenee</ListBoxItem>
-                <ListBoxItem>Ansh</ListBoxItem>
-                <ListBoxItem>Jerry</ListBoxItem>
-                <ListBoxItem>Logan</ListBoxItem>
-                <ListBoxItem>Sarthak</ListBoxItem>
-                <ListBoxItem>Dhruv</ListBoxItem>
-                <ListBoxItem>Sophie</ListBoxItem>
-                <ListBoxItem>Erika</ListBoxItem>
+            <ListView x:Name="ListViewData"
+                      ItemsSource="{Binding Path=Customers}"
+                      SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
+                      DisplayMemberPath="FirstName"
+                      Grid.Row="1" Margin="10">
             </ListView>
         </Grid>
 
@@ -47,10 +42,10 @@
         <!-- Customer Details -->
         <StackPanel Grid.Column="1">
             <Label>First Name:</Label>
-            <TextBox Text="{Binding ElementName=ListViewData, Path=SelectedItem.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5 0 5 0"/>
+            <TextBox Text="{Binding SelectedCustomer.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5 0 5 0"/>
             <Label>Last Name:</Label>
-            <TextBox Margin="5 0 5 0"/>
-            <CheckBox Content="Is Developer" Margin="5 10 0 0"/>
+            <TextBox Text="{Binding SelectedCustomer.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5 0 5 0"/>
+            <CheckBox Content="Is Developer" IsChecked="{Binding SelectedCustomer.IsDeveloper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5 0 5 0"/>
         </StackPanel>
     </Grid>
 </UserControl>

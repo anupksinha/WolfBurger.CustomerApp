@@ -1,20 +1,29 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using WolfBurger.CustomerApp.Data;
+using WolfBurger.CustomerApp.ViewModel;
 
 namespace WolfBurger.CustomerApp.View
 {
     public partial class CustomerView : UserControl
     {
+        CustomerViewModel _customerViewModel;
         public CustomerView()
         {
             InitializeComponent();
+            _customerViewModel = new CustomerViewModel(new CustomerDataProvider());
+            DataContext = _customerViewModel;
+            Loaded += CustomerView_LoadedAsync;
         }
+
+        private async void CustomerView_LoadedAsync(object sender, RoutedEventArgs e)
+        {
+            await _customerViewModel.LoadAsync();
+        }
+
         private void MoveNavigateBtn_Click(object sender, RoutedEventArgs e)
         {
-            //var column = (int)CustomerListGrid.GetValue(Grid.ColumnProperty);
-            //var newColumn = column == 0 ? 2 : 0;
-            //CustomerListGrid.SetValue(Grid.ColumnProperty, newColumn);
-
             var column = Grid.GetColumn(CustomerListGrid);
             var newColumn = column == 0 ? 2 : 0;
             Grid.SetColumn(CustomerListGrid, newColumn);
