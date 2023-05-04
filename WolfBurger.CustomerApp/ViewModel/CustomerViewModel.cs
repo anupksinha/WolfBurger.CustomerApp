@@ -6,19 +6,19 @@ using WolfBurger.CustomerApp.Model;
 
 namespace WolfBurger.CustomerApp.ViewModel
 {
-    public class CustomerViewModel : ViewModelBased
+    public class CustomerViewModel : ViewModelBase
     {
         private ICustomerDataProvider _customerDataProvider;
-        private Customer? selectedCustomer;
+        private CustomerItemViewModel? selectedCustomer;
 
         public CustomerViewModel(ICustomerDataProvider customerDataProvider)
         {
             _customerDataProvider = new CustomerDataProvider();
         }
 
-        public ObservableCollection<Customer> Customers { get; set; } = new();
+        public ObservableCollection<CustomerItemViewModel> Customers { get; set; } = new();
 
-        public Customer? SelectedCustomer 
+        public CustomerItemViewModel? SelectedCustomer 
         { 
             get => selectedCustomer;
             set 
@@ -37,15 +37,16 @@ namespace WolfBurger.CustomerApp.ViewModel
             var customers = await _customerDataProvider.LoadAsync();
             foreach (var customer in customers)
             {
-                Customers.Add(customer);
+                Customers.Add(new CustomerItemViewModel(customer));
             }
         }
 
         internal void Add()
         {
             var customer = new Customer() { CustId = 7, FirstName = "New Customer First Name", LastName = "New Customer Last Name", IsDeveloper = true };
-            Customers.Add(customer);
-            SelectedCustomer = customer;
+            var viewModel = new CustomerItemViewModel(customer);
+            Customers.Add(viewModel);
+            SelectedCustomer = viewModel;
         }
 
        

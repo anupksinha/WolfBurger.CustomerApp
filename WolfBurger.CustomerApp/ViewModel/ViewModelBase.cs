@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace WolfBurger.CustomerApp.ViewModel
 {
-    public class ViewModelBased:INotifyPropertyChanged
+    public class ViewModelBase:INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
