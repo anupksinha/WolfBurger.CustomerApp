@@ -28,5 +28,10 @@ namespace WolfBurger.CustomerApp.View
             var newColumn = column == 0 ? 2 : 0;
             Grid.SetColumn(CustomerListGrid, newColumn);
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            _customerViewModel.Add();
+        }
     }
 }
