@@ -23,7 +23,7 @@ namespace WolfBurger.CustomerApp.ViewModel
             DeleteCommand = new DelegateCommand(Delete, CanDelete);
         }
 
-      
+       
 
         public ObservableCollection<CustomerItemViewModel> Customers { get; set; } = new();
 
@@ -59,7 +59,7 @@ namespace WolfBurger.CustomerApp.ViewModel
 
         public DelegateCommand DeleteCommand { get; private set; }
 
-        public async Task LoadAsync()
+        public async override Task LoadAsync()
         {
             if (Customers.Any())
             {

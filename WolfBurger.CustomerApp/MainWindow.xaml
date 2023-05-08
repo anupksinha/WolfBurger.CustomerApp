@@ -4,10 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WolfBurger.CustomerApp" 
-        xmlns:controls="clr-namespace:WolfBurger.CustomerApp.Controls" xmlns:view="clr-namespace:WolfBurger.CustomerApp.View"
+        xmlns:controls="clr-namespace:WolfBurger.CustomerApp.Controls" 
+        xmlns:view="clr-namespace:WolfBurger.CustomerApp.View" 
+        xmlns:viewmodel="clr-namespace:WolfBurger.CustomerApp.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow"
         d:DesignWidth="500" d:DesignHeight="600"  Height="450" Width="800" FontSize="20" >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodel:CustomerViewModel}">
+            <view:CustomerView/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,7 +35,7 @@
         <controls:HeaderControl Grid.Row="1"/>
 
         <!-- Customer List -->
-        <view:CustomerView Grid.Row="2"/>
+        <ContentControl Grid.Row="2" Content="{Binding SelectedViewModel}"/>
 
         <!-- Status Bar -->
         <StatusBar Grid.Row="3">
