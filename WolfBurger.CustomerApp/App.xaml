@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WolfBurger.CustomerApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush Color="Orange" x:Key="HeaderBackgroudColorBrush"/>
+        <SolidColorBrush Color="White" x:Key="HeaderForegroundColorBrush"/>
     </Application.Resources>
 </Application>
