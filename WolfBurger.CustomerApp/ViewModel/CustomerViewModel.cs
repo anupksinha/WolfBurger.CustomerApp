@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using WolfBurger.CustomerApp.Command;
 using WolfBurger.CustomerApp.Data;
 using WolfBurger.CustomerApp.Model;
 
@@ -16,7 +18,12 @@ namespace WolfBurger.CustomerApp.ViewModel
         public CustomerViewModel(ICustomerDataProvider customerDataProvider)
         {
             _customerDataProvider = new CustomerDataProvider();
+            AddCommand = new DelegateCommand(Add);
+            MoveNavigationCommand = new DelegateCommand(MoveNavigation);
+            DeleteCommand = new DelegateCommand(Delete, CanDelete);
         }
+
+      
 
         public ObservableCollection<CustomerItemViewModel> Customers { get; set; } = new();
 
@@ -27,6 +34,7 @@ namespace WolfBurger.CustomerApp.ViewModel
             {
                 selectedCustomer = value;
                 RaisePropertyChanged(nameof(SelectedCustomer));
+                DeleteCommand.RaiseCanExecutedChanged();
             }
         }
 
@@ -39,6 +47,12 @@ namespace WolfBurger.CustomerApp.ViewModel
                 RaisePropertyChanged();
             }
          }
+
+        public DelegateCommand AddCommand { get; private set; }
+        public DelegateCommand MoveNavigationCommand { get; private set; }
+
+        public DelegateCommand DeleteCommand { get; private set; }
+
         public async Task LoadAsync()
         {
             if (Customers.Any())
@@ -53,7 +67,7 @@ namespace WolfBurger.CustomerApp.ViewModel
             }
         }
 
-        internal void Add()
+        private void Add(Object parameter)
         {
             var customer = new Customer() { CustId = 7, FirstName = "New Customer First Name", LastName = "New Customer Last Name", IsDeveloper = true };
             var viewModel = new CustomerItemViewModel(customer);
@@ -61,9 +75,24 @@ namespace WolfBurger.CustomerApp.ViewModel
             SelectedCustomer = viewModel;
         }
 
-        internal void MoveNavigation()
+        private void MoveNavigation(Object parameter)
         {
             NavigationColumnSide = NavigationColumnSide == NavigationSide.Left ? NavigationSide.Right : NavigationSide.Left;
+        }
+
+        private void Delete(Object parameter)
+        {
+            if( selectedCustomer is not null)
+            {
+                Customers.Remove(selectedCustomer);
+                selectedCustomer = null;
+            }
+        }
+
+        private bool CanDelete(object? parameter)
+        {
+            return selectedCustomer is not null;
+                
         }
 
         public enum NavigationSide

@@ -23,7 +23,7 @@ namespace WolfBurger.CustomerApp.ViewModel
             set
             {
                 _model.FirstName = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(); 
             }
         }
 
