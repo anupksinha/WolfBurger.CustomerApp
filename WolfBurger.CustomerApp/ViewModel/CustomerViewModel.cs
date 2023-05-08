@@ -34,8 +34,14 @@ namespace WolfBurger.CustomerApp.ViewModel
             {
                 selectedCustomer = value;
                 RaisePropertyChanged(nameof(SelectedCustomer));
+                RaisePropertyChanged(nameof(IsCustomerSelected));
                 DeleteCommand.RaiseCanExecutedChanged();
             }
+        }
+
+        public bool IsCustomerSelected 
+        { 
+            get => SelectedCustomer is not null;
         }
 
         public NavigationSide NavigationColumnSide 
