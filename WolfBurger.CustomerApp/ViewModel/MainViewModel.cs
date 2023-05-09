@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WolfBurger.CustomerApp.Command;
 
 namespace WolfBurger.CustomerApp.ViewModel
 {
     public class MainViewModel:ViewModelBase
     {
         private readonly CustomerViewModel _customerViewModel;
+        private readonly ProductViewModel _productViewModel;
         private ViewModelBase? _selectedViewModel;
-        public MainViewModel(CustomerViewModel customerViewModel)
+        public MainViewModel(CustomerViewModel customerViewModel, ProductViewModel productViewModel)
         {
-            this._customerViewModel = customerViewModel;
-            SelectedViewModel = _customerViewModel;
+            _customerViewModel = customerViewModel;
+            _productViewModel = productViewModel;
+            SelectedViewModel = _productViewModel;
+            SelectViewModelCommand = new DelegateCommand(SelectViewModel);
         }
 
         public ViewModelBase? SelectedViewModel
@@ -27,6 +31,14 @@ namespace WolfBurger.CustomerApp.ViewModel
 				RaisePropertyChanged();
 			}
 		}
+
+        public DelegateCommand SelectViewModelCommand { get;  }
+        private async void SelectViewModel(Object? parameter)
+        {
+            SelectedViewModel = parameter as ViewModelBase;
+            await LoadAsync();
+
+        }
 
         public async override Task LoadAsync()
         {

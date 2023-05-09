@@ -12,7 +12,7 @@ namespace WolfBurger.CustomerApp
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new MainViewModel(new CustomerViewModel(new CustomerDataProvider()));
+            _viewModel = new MainViewModel(new CustomerViewModel(new CustomerDataProvider()), new ProductViewModel());
             DataContext = _viewModel;
             Loaded += MainWindow_LoadedAsync;
                 
